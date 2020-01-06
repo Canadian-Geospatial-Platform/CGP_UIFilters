@@ -7,14 +7,11 @@
     <meta name="author" content="">
     <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
 
-    <title>Pricing example for Bootstrap</title>
+    <title>CGP Searching Filtering</title>
 
   <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="bootstrap/site/css/mycss.css" rel="stylesheet">
-    <!-- Bootstrap core CSS -->
 
-
-    <!-- Custom styles for this template -->
 
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
@@ -50,109 +47,115 @@
 									</div>
                     <div class="row">
                       <div class="col-2"></div>
-                      <div class="col-9">
-                        <div class="alert alert-warning alert-dimissible fade show" role="alert">
-                         <label class="btn btn-info" data-dimiss="alert" aria-label="Close">Dataset <span class="fa fa-times"></span> </label>
-                         <label class="btn btn-info" data-dimiss="alert" aria-label="Close">Agriculture and Agri-Food Canada <span class="fa fa-times"></span> </label>
-                      </div>
+                      <div class="col-10 alert alert-warning alert-dimissible fade show close" id="ResultFilterTop" >
                       </div>
                     </div>
 									<div class="row">
 								 		<div class="col-4 col-md-3 col-lg-4">
 								 			<div id="accordion" class="panel panel-primary behclick-panel">
 								 				<div class="panel-heading">
-								 					<h3 class="panel-title">Search Filters</h3>
+                          <div class="row">
+                            <div class="col-6">
+                            <h4 class="panel-title">Search Filters</h4>
+                            </div>
+                            <div class="col-4">
+                              <button type="button" id="btntclearfilter" class="btn btn-link btn-xs">Clear filters</button>
+                              </div>
+                          </div>
 								 				</div>
+
 								 				<div class="panel-body" >
 								 					<div class="panel-heading " >
 								 						<h4 class="panel-title">
 								 							<a data-toggle="collapse" href="#collapse0">
-								 								<i class="indicator fa fa-caret-down" aria-hidden="true"></i> Filters by Resource Type
+								 								<i class="indicator fa fa-caret-right" aria-hidden="true"></i> Filters by Resource Type
 								 							</a>
 								 						</h4>
 								 					</div>
-								 					<div id="collapse0" class="panel-collapse collapse in" >
+								 					<div id="collapse0" class="panel-collapse collapse">
+                            <div id="checkFRT">
 								 						<ul class="list-group">
 								 							<li class="list-group-item">
 								 								<div class="checkbox">
-								 									<label>
-								 										<input type="checkbox" value="" checked>
+								 									<label for="DataSet">
+								 										<input type="checkbox" class="checkme" id="DataSet" value="DataSet" checked>
 								 										DataSet
 								 									</label>
 								 								</div>
 								 							</li>
 								 							<li class="list-group-item">
 								 								<div class="checkbox" >
-								 									<label>
-								 										<input type="checkbox" value="">APPLICATION - UI FILTER
-								 										Web services
+								 									<label for="webServices">
+								 										<input class="checkme"  type="checkbox" id="WebServices" value="Web Services">
+								 										Web Services
 								 									</label>
 								 								</div>
 								 							</li>
 								 							<li class="list-group-item">
-								 								<div class="checkbox"  >
-								 									<label>
-								 										<input type="checkbox" value="">
+								 								<div class="checkbox">
+								 									<label for="Application">
+								 										<input class="checkme"  type="checkbox" id="Application"  value="Application">
 								 										Application
 								 									</label>
 								 								</div>
 								 							</li>
 								 							<li class="list-group-item">
-								 								<div class="checkbox"  >
-								 									<label>
-								 										<input type="checkbox" value="">
+								 								<div class="checkbox">
+								 									<label for="API">
+								 										<input class="checkme"  type="checkbox" id="API" value="API">
 								 									API
 								 									</label>
 								 								</div>
 								 							</li>
 															<li class="list-group-item">
 																<div class="checkbox"  >
-																	<label>
-																		<input type="checkbox" value="">
+																	<label for="GuideDocument">
+																		<input class="checkme"  type="checkbox" id="GuideDocument" value="Guide Document">
 																Guide Document
 																	</label>
 																</div>
 															</li>
 								 						</ul>
+                            </div>
 								 					</div>
 
 								 					<div class="panel-heading " >
 								 						<h4 class="panel-title">
 								 							<a data-toggle="collapse" href="#collapse1">
-								 								<i class="indicator fa fa-caret-down" aria-hidden="true"></i> Filters by Format
+								 								<i class="indicator fa fa-caret-right" aria-hidden="true"></i> Filters by Format
 								 							</a>
 								 						</h4>
 								 					</div>
-								 					<div id="collapse1" class="panel-collapse collapse in" >
+								 					<div id="collapse1" class="panel-collapse collapse" >
 								 						<ul class="list-group">
 								 							<li class="list-group-item">
 								 								<div class="checkbox">
-								 									<label>
-								 										<input type="checkbox" value="">
+								 									<label for="ESRIREST">
+								 										<input class="checkme" type="checkbox" value="" id="ESRIREST">
 								 										ESRI | REST
 								 									</label>
 								 								</div>
 								 							</li>
 								 							<li class="list-group-item">
 								 								<div class="checkbox" >
-								 									<label>
-								 										<input type="checkbox" value="">
+								 									<label for="FGDBGDB">
+								 										<input type="checkbox" class="checkme" id="FGDBGDB" value="">
 								 									 FGDB/GDB
 								 									</label>
 								 								</div>
 								 							</li>
 								 							<li class="list-group-item">
 								 								<div class="checkbox"  >
-								 									<label>
-								 										<input type="checkbox" value="">
+								 									<label for="GEJSON">
+								 										<input class="checkme" type="checkbox" id="GEOJSON" value="">
 								 										GEOJSON
 								 									</label>
 								 								</div>
 								 							</li>
 															<li class="list-group-item">
 																<div class="checkbox">
-																	<label>
-																		<input type="checkbox" value="">
+																	<label for="GML">
+																		<input class="checkme" type="checkbox" id="GML"value="">
 																		GML
 																	</label>
 																</div>
@@ -161,24 +164,24 @@
 															<span id="filtermore">
 																<li class="list-group-item">
 																	<div class="checkbox">
-																		<label>
-																			<input type="checkbox" value="">
+																		<label for="GEOTIF">
+																			<input class="checkme" type="checkbox" id="GEOTIF" value="">
 																			Geo Tif
 																		</label>
 																	</div>
 																</li>
 																<li class="list-group-item">
 																	<div class="checkbox"  >
-																		<label>
-																			<input type="checkbox" value="">
+																		<label for="JSON">
+																			<input class="checkme" type="checkbox" value="" id="JSON">
 																			Json
 																		</label>
 																	</div>
 																</li>
 																<li class="list-group-item">
-																	<div class="checkbox"  >
-																		<label>
-																			<input type="checkbox" value="">
+																	<div class="checkbox">
+																		<label for="ESRIREST">
+																			<input class="checkme" type="checkbox" value="" id="ESRIREST">
 																			ESRI|REST
 																		</label>
 																	</div>
@@ -187,23 +190,23 @@
 															</div>
                               <div class="row">
                                   <div class="col-md-6">
-                              <button type="button" id="btntoggle" class="btn btn-link btn-lg">Show More	</button>
+                              <button type="button" id="btntoggle" class="btn btn-link btn-xs">Show More	</button>
                               </div></div>
 														</div>
 								 						</ul>
 								 					</div>
 								 					<div class="panel-heading" >
 								 						<h4 class="panel-title">
-								 							<a data-toggle="collapse" href="#collapse2"><i class="indicator fa fa-caret-down" aria-hidden="true"></i> Filters by Time</a>
+								 							<a data-toggle="collapse" href="#collapse2">
+                                <i class="indicator fa fa-caret-right" aria-hidden="true"></i> Filters by Time</a>
 								 						</h4>
 								 					</div>
-								 					<div id="collapse2" class="panel-collapse collapse in">
+								 					<div id="collapse2" class="panel-collapse collapse">
 								 						<ul class="list-group">
 								 							<li class="list-group-item">
 								 								<div class="checkbox">
 								 									<label>
-								 										<input type="checkbox" value="">
-
+								 										<input  type="checkbox" value="">
 								 									</label>
 								 								</div>
 								 							</li>
@@ -212,39 +215,40 @@
 								 					</div>
 								 					<div class="panel-heading" >
 								 						<h4 class="panel-title">
-								 							<a data-toggle="collapse" href="#collapse3"><i class="indicator fa fa-caret-right" aria-hidden="true"></i> Filters by Source</a>
+								 							<a data-toggle="collapse" href="#collapse3">
+                                <i class="indicator fa fa-caret-right" aria-hidden="true"></i> Filters by Source</a>
 								 						</h4>
 								 					</div>
 								 					<div id="collapse3" class="panel-collapse collapse">
 								 						<ul class="list-group">
 								 							<li class="list-group-item">
 								 								<div class="checkbox">
-								 									<label>
-								 											<input type="checkbox" value="" checked>
+								 									<label for="AFFC">
+								 											<input class="checkme" type="checkbox" value="" id="AFFC">
 								 										Agriculture and Agri-Food Canada
 								 									</label>
 								 								</div>
 								 							</li>
 								 							<li class="list-group-item">
 								 								<div class="checkbox" >
-								 									<label>
-								 										<input type="checkbox" value="">
+								 									<label for="CFIA">
+								 										<input class="checkme"  type="checkbox" value="" id="CFIA">
 								 										Canadian Food Inspection Agency
 								 									</label>
 								 								</div>
 								 							</li>
 								 							<li class="list-group-item">
 								 								<div class="checkbox">
-								 									<label>
-								 										<input type="checkbox" value="">
+								 									<label for="CNSC">
+								 										<input class="checkme" type="checkbox" value="Canadian Nuclear  Safety Commision" id="CNSC">
 								 									 Canadian Nuclear  Safety Commision
 								 									</label>
 								 								</div>
 								 							</li>
 															<li class="list-group-item">
 																<div class="checkbox">
-																	<label>
-																		<input type="checkbox" value="">
+																	<label for="CSA">
+																		<input class="checkme" type="checkbox" value="" id="CSA">
 																	 Canadian Space Agency
 																	</label>
 																</div>
@@ -253,128 +257,128 @@
 															<span id="filtermoresource">
 															<li class="list-group-item">
 																<div class="checkbox">
-																	<label>
-																		<input type="checkbox" value="">
+																	<label for="CIRNAC">
+																		<input class="checkme" type="checkbox" value="" id="CIRNAC">
 																	 Crown-indegenuos Relations and Northen Affairs Canada
 																	</label>
 																</div>
 															</li>
                               <li class="list-group-item">
 																<div class="checkbox">
-																	<label>
-																		<input type="checkbox" value="">
+																	<label for="Election Canada">
+																		<input class="checkme" type="checkbox" value="" id="Election Canada">
 																	 Election Canada
 																	</label>
 																</div>
 															</li>
                               <li class="list-group-item">
 																<div class="checkbox">
-																	<label>
-																		<input type="checkbox" value="">
+																	<label for="ESDC">
+																		<input class="checkme" type="checkbox" value="" id="ESDC">
 																	 Employment and Social Development Canada
 																</label>
                               </Dataset div>
 															</li>
                               <li class="list-group-item">
 																<div class="checkbox">
-																	<label>
-																		<input type="checkbox" value="">
+																	<label for="ECCC">
+																		<input class="checkme" type="checkbox" value="" id="ECCC">
 																	 Enviroment and Climate Change Canada
 																	</label>
 																</div>
 															</li>
                               <li class="list-group-item">
 																<div class="checkbox">
-																	<label>
-																		<input type="checkbox" value="">
+																	<label for="FOC">
+																		<input class="checkme" type="checkbox" value="" id="FOC">
 																	 Fisheries and Oceans Canada
 																	</label>
 																</div>
 															</li>
                               <li class="list-group-item">
 																<div class="checkbox">
-																	<label>
-																		<input type="checkbox" value="">
+																	<label id="GA">
+																		<input class="checkme" type="checkbox" value="" id="GA">
 																	 Government of Alberta
 																	</label>
 																</div>
 															</li>
                               <li class="list-group-item">
 																<div class="checkbox">
-																	<label>
-																		<input type="checkbox" value="">
+																	<label for="GBC">
+																		<input class="checkme" type="checkbox" value="" id="GBC">
 																	 Government of British Columbia
 																	</label>
 																</div>
 															</li>
                               <li class="list-group-item">
 																<div class="checkbox">
-																	<label>
-																		<input type="checkbox" value="">
-																	 Health canada
+																	<label for="HC">
+																		<input class="checkme" type="checkbox" value="" id="HC">
+																	 Health Canada
 																	</label>
 																</div>
 															</li>
                               <li class="list-group-item">
 																<div class="checkbox">
-																	<label>
-																		<input type="checkbox" value="">
+																	<label for="IAAC">
+																		<input class="checkme" type="checkbox" value="" id="IAAC">
 																	 Impact Assessment Agency of Canada
 																	</label>
 																</div>
 															</li>
                               <li class="list-group-item">
 																<div class="checkbox">
-																	<label>
-																		<input type="checkbox" value="">
+																	<label for="NRCC">
+																		<input class="checkme" type="checkbox" value="" id="NRCC">
 																	 National Research Council Canada
 																	</label>
 																</div>
 															</li>
                               <li class="list-group-item">
 																<div class="checkbox">
-																	<label>
-																		<input type="checkbox" value="">
+																	<label for="NCR">
+																		<input class="checkme"  type="checkbox" value="" id="NRC">
 																	 Natural Resources Canada
 																	</label>
 																</div>
 															</li>
                               <li class="list-group-item">
-																<div class="checkbox">
-																	<label>
-																		<input type="checkbox" value="">
+																<div  class="checkbox">
+																	<label for="PC">
+																		<input class="checkme" type="checkbox" value="" id="PC">
 																	 Parks Canada
 																	</label>
 																</div>
 															</li>
                               <li class="list-group-item">
 																<div class="checkbox">
-																	<label>
-																		<input type="checkbox" value="">
+																	<label for="PHAC">
+																		<input class="checkme" type="checkbox" value="" id="PHAC">
 																	 Public Health Agency of Canada
                                  </label>
 																</div>
 															</li>
                               <li class="list-group-item">
                                 <div class="checkbox">
-                                  <label>
-                                    <input type="checkbox" value="">
+                                  <label for="STATCAN">
+                                    <input class="checkme" type="checkbox" value="" id="STATCAN">
                                    Statistics Canada
                                  </label>
                                 </div>
                               </li>
                               <li class="list-group-item">
                                 <div class="checkbox">
-                                  <label>
-                                    <input type="checkbox" value="">
+                                  <label for="TC">
+                                    <input class="checkme" type="checkbox" value="" id="TC">
                                    Transport Canada
                                  </label>
                                 </div>
                               </li>
                               <li class="list-group-item">
                                 <div class="checkbox">
-                                  <label>
-                                    <input type="checkbox" value="">
+                                  <label for="VAC">
+                                    <input class="checkme" type="checkbox" value="" id="VAC">
                                    Veterans Affairs Canada
                                  </label>
                                 </div>
@@ -382,7 +386,7 @@
                               <li class="list-group-item">
                                 <div class="checkbox">
                                   <label>
-                                    <input type="checkbox" value="">
+                                    <input class="checkme" type="checkbox" value="" id="Other">
                                    Other
                                  </label>
                                 </div>
@@ -391,7 +395,7 @@
                           </div>
                           <div class="row">
 		                          <div class="col-md-6">
-                          <button type="button" id="btntogglesource" class="btn btn-link btn-lg">Show More</button>
+                          <button type="button" id="btntogglesource" class="btn btn-link btn-xs">Show More</button>
                               </div>
                              </div>
 								 						</ul>
@@ -423,6 +427,8 @@
 	// 	text: 'Thumbnail'
 	// });index1.html#collapse2
   $(document).ready(function() {
+    var n=0;
+    $("#btntclearfilter").hide();
     $("#btntoggle").click(function() {
       var elem = $("#btntoggle").text();
       console.log(elem)
@@ -432,12 +438,13 @@
         $("#filtermore").slideDown();
 
       } else {
-        //Stuff to do when btn is in the read less state
+        //Stuff to do when checkboxbtn is in the read less state
         $("#btntoggle").text("Show More");
         $("#filtermore").slideUp();
       }
     });
     $("#btntogglesource").click(function() {
+
       var elems = $("#btntogglesource").text();
       console.log(elems)
       if (elems == "Show More") {
@@ -451,6 +458,39 @@
         $("#filtermoresource").slideUp();
       }
     });
+    $(".checkme").change(function(e) {
+      if ($(this).is(":checked")) {
+       $('#ResultFilterTop').append(
+        '<label   id='+ $(this).attr("id") +' class="btn btn-info close"  aria-label="Close">'+ $(this).attr("id") +'  '+'<span class="fa fa-times"></span> </label>' + "  "
+        );
+         n=n+1
+          $("#btntclearfilter").show();
+        $("#"+$(this).attr("id")).click(function(){
+            $("#"+$(this).attr("id")).remove();
+             n=n-1
+               if (n===0)   $("#btntclearfilter").hide();
+            $("#"+$(this).attr("id")).prop('checked',false);
+        })
+     }
+       else {
+         //remove
+         $("#"+$(this).attr("id")).remove();
+          n=n-1
+          if (n===0)   $("#btntclearfilter").hide();
+     }
+    })
+
+   $("#btntclearfilter").click(function(e){
+      $('.btn-info').each(function(index,value){
+      //  console.log(value);
+        $(value).remove();
+      })
+      $(".checkme").each(function(index,value){
+          console.log(value);
+          $(value).prop('checked',false);
+      })
+      $("#btntclearfilter").hide();
+   })
   });
 	function toggleChevron(e) {
 		$(e.target)
