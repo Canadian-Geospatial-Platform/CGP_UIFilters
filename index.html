@@ -33,11 +33,11 @@
 																	</div>
 																	<!--end of col-->
 																	<div class="col">
-																			<input class="form-control form-control-lg form-control-borderless" type="search" placeholder="Search topics or keywords">
+																			<input id="searchcontent" class="form-control form-control-lg form-control-borderless" type="search" placeholder="Search topics or keywords">
 																	</div>
 																	<!--end of col-->
 																	<div class="col-auto">
-																			<button class="btn btn-lg btn-success" type="submit">Search</button>
+																			<button id="btnsearchbykeyboard"  class="btn btn-lg btn-success" type="submit">Search</button>
 																	</div>
 																	<!--end of col-->
 															</div>
@@ -78,7 +78,7 @@
 								 							<li class="list-group-item">
 								 								<div class="checkbox">
 								 									<label for="DataSet">
-								 										<input type="checkbox" class="checkme" id="DataSet" value="DataSet" checked>
+								 										<input type="checkbox" class="checkme" id="DataSet" value="1">
 								 										DataSet
 								 									</label>
 								 								</div>
@@ -86,7 +86,7 @@
 								 							<li class="list-group-item">
 								 								<div class="checkbox" >
 								 									<label for="webServices">
-								 										<input class="checkme"  type="checkbox" id="WebServices" value="Web Services">
+								 										<input class="checkme"  type="checkbox" id="WebServices" value="2">
 								 										Web Services
 								 									</label>
 								 								</div>
@@ -94,7 +94,7 @@
 								 							<li class="list-group-item">
 								 								<div class="checkbox">
 								 									<label for="Application">
-								 										<input class="checkme"  type="checkbox" id="Application"  value="Application">
+								 										<input class="checkme"  type="checkbox" id="Application"  value="3">
 								 										Application
 								 									</label>
 								 								</div>
@@ -102,7 +102,7 @@
 								 							<li class="list-group-item">
 								 								<div class="checkbox">
 								 									<label for="API">
-								 										<input class="checkme"  type="checkbox" id="API" value="API">
+								 										<input class="checkme"  type="checkbox" id="API" value="4">
 								 									API
 								 									</label>
 								 								</div>
@@ -110,7 +110,7 @@
 															<li class="list-group-item">
 																<div class="checkbox"  >
 																	<label for="GuideDocument">
-																		<input class="checkme"  type="checkbox" id="GuideDocument" value="Guide Document">
+																		<input class="checkme"  type="checkbox" id="GuideDocument" value="5">
 																Guide Document
 																	</label>
 																</div>
@@ -404,8 +404,8 @@
 								 			</div>
                       <div class="col-8 col-md-8 col-lg-8">
                         <div class="jumbotron jumbotron-fluid">
-                            <h1 class="display-4">Fluid jumbotron</h1>
-                            <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+                            <h4 class="display-4">Result</h4>
+                            <p class="lead">.</p>
                           </div>
                       </div>
 								 		</div>
@@ -429,6 +429,8 @@
   $(document).ready(function() {
     var n=0;
     $("#btntclearfilter").hide();
+    JSonObj=new Array();
+
     $("#btntoggle").click(function() {
       var elem = $("#btntoggle").text();
       console.log(elem)
@@ -451,7 +453,7 @@
         //Stuff to do when btn is in the read more state
         $("#btntogglesource").text("Show Less");
         $("#filtermoresource").slideDown();
-
+$(this)
       } else {
         //Stuff to do when btn is in the read less state
         $("#btntogglesource").text("Show More");
@@ -459,16 +461,22 @@
       }
     });
     $(".checkme").change(function(e) {
+
       if ($(this).is(":checked")) {
        $('#ResultFilterTop').append(
         '<label   id='+ $(this).attr("id") +' class="btn btn-info close"  aria-label="Close">'+ $(this).attr("id") +'  '+'<span class="fa fa-times"></span> </label>' + "  "
         );
          n=n+1
           $("#btntclearfilter").show();
-        $("#"+$(this).attr("id")).click(function(){
+          items={}
+          items["id"]=$(this).attr("value");
+          items["title"]=$(this).attr("id");
+          JSonObj.push(items);
+          console.log(JSonObj);
+          $("#"+$(this).attr("id")).click(function(){
             $("#"+$(this).attr("id")).remove();
              n=n-1
-               if (n===0)   $("#btntclearfilter").hide();
+             if (n===0)   $("#btntclearfilter").hide();
             $("#"+$(this).attr("id")).prop('checked',false);
         })
      }
@@ -477,21 +485,56 @@
          $("#"+$(this).attr("id")).remove();
           n=n-1
           if (n===0)   $("#btntclearfilter").hide();
-     }
-    })
+        }
+        SendtToAWSAPI();
+    })//end   $(".checkme").change()
+
+   $("#btnsearchbykeyboard").click(function(){
+     items={}
+     items["id"]=0;
+     items["search"]=$("#searchcontent").val();
+     JSonObj.push(items);
+      //console.log($("#searchcontent").val());
+      SendtToAWSAPI();
+   })
 
    $("#btntclearfilter").click(function(e){
+     $("#searchcontent").val(" ");
+     JSonObj=[];
       $('.btn-info').each(function(index,value){
       //  console.log(value);
         $(value).remove();
       })
       $(".checkme").each(function(index,value){
-          console.log(value);
           $(value).prop('checked',false);
       })
       $("#btntclearfilter").hide();
    })
   });
+
+  function SendtToAWSAPI(){
+    var JsonString=JSON.stringify(JSonObj);
+      // console.log(JsonString);
+         console.log(JSonObj);
+    $.ajax(
+      {
+      url:'https://url-apiv1',
+      headers:{'Content-type':'application/json',
+              'Access-Control-Allow-Origin':'*'
+              },
+      CrossDomain:true,
+      Type:'POST',
+      dataType:'application/jSon',
+      data:JsonString,
+      Success:function(data){
+        console.log(data);
+      },
+      error: function(data){
+        console.log("error = "+JSON.stringify(data));
+      }
+    })//end $.ajax
+
+  }
 	function toggleChevron(e) {
 		$(e.target)
 				.prev('.panel-heading')
