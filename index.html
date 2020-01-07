@@ -461,18 +461,29 @@ $(this)
       }
     });
     $(".checkme").change(function(e) {
+<<<<<<< HEAD
 
+=======
+      JSonObj=[];
+      items={}
+>>>>>>> ba36ec5782f5b1ca47e2eaca86c49c81559704ab
       if ($(this).is(":checked")) {
        $('#ResultFilterTop').append(
         '<label   id='+ $(this).attr("id") +' class="btn btn-info close"  aria-label="Close">'+ $(this).attr("id") +'  '+'<span class="fa fa-times"></span> </label>' + "  "
         );
          n=n+1
           $("#btntclearfilter").show();
+<<<<<<< HEAD
           items={}
           items["id"]=$(this).attr("value");
           items["title"]=$(this).attr("id");
           JSonObj.push(items);
           console.log(JSonObj);
+=======
+          items["title"]=$(this).attr("id");
+          JSonObj.push(items);
+          console.log(items);
+>>>>>>> ba36ec5782f5b1ca47e2eaca86c49c81559704ab
           $("#"+$(this).attr("id")).click(function(){
             $("#"+$(this).attr("id")).remove();
              n=n-1
@@ -485,6 +496,7 @@ $(this)
          $("#"+$(this).attr("id")).remove();
           n=n-1
           if (n===0)   $("#btntclearfilter").hide();
+<<<<<<< HEAD
         }
         SendtToAWSAPI();
     })//end   $(".checkme").change()
@@ -497,6 +509,30 @@ $(this)
       //console.log($("#searchcontent").val());
       SendtToAWSAPI();
    })
+=======
+     }
+    var JsonString=JSON.stringify(JSonObj);
+    // console.log(JsonString);
+    alert(JsonString);
+    $.ajax(
+      {
+      url:'https://url-apiv1',
+      headers:{'Content-type':'application/json',
+              'Access-Control-Allow-Origin':'*'
+              },
+      CrossDomain:true,
+      Type:'POST',
+      dataType:'application/jSon',
+      data:JsonString,
+      Success:function(data){
+        console.log(data);
+      },
+      error: function(data){
+        console.log("error = "+JSON.stringify(data));
+      }
+     })//end $.ajax
+    })
+>>>>>>> ba36ec5782f5b1ca47e2eaca86c49c81559704ab
 
    $("#btntclearfilter").click(function(e){
      $("#searchcontent").val(" ");
