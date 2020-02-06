@@ -37,7 +37,7 @@
 																	</div>
 																	<!--end of col-->
 																	<div class="col-auto">
-																			<button id="btnsearchbykeyboard"  class="btn btn-lg btn-success" type="submit">Search</button>
+																			<button id="btnsearchbykeyboard"  class="btn btn-lg btn-success clearfilter" type="submit">Search</button>
 																	</div>
 																	<!--end of col-->
 															</div>
@@ -47,11 +47,11 @@
 									</div>
                     <div class="row">
                       <div class="col-2"></div>
-                      <div class="col-10 alert alert-warning alert-dimissible fade show close" id="ResultFilterTop" >
+                      <div class="col-10 alert alert-warning alert-dimissible fade show close notification" id="ResultFilterTop" >
                       </div>
                     </div>
 									<div class="row">
-								 		<div class="col-4 col-md-3 col-lg-4">
+								 		<div class="col-4 col-md-2 col-lg-3">
 								 			<div id="accordion" class="panel panel-primary behclick-panel">
 								 				<div class="panel-heading">
                           <div class="row">
@@ -59,16 +59,15 @@
                             <h4 class="panel-title">Search Filters</h4>
                             </div>
                             <div class="col-4">
-                              <button type="button" id="btntclearfilter" class="btn btn-link btn-xs">Clear filters</button>
+                              <button type="button" id="btntclearfilter" class="btn btn-link btn-xs clearfilter">Clear filters</button>
                               </div>
                           </div>
 								 				</div>
 
-								 				<div class="panel-body" >
-								 					<div class="panel-heading " >
+								 					<div class="panel-heading">
 								 						<h4 class="panel-title">
 								 							<a data-toggle="collapse" href="#collapse0">
-								 								<i class="indicator fa fa-caret-right" aria-hidden="true"></i> Filters by Resource Type
+								 								<i class="indicator fa fa-caret-right" aria-hidden="true"></i>Filters by Resource Type
 								 							</a>
 								 						</h4>
 								 					</div>
@@ -119,7 +118,7 @@
                             </div>
 								 					</div>
 
-								 					<div class="panel-heading " >
+								 					<div class="panel-heading">
 								 						<h4 class="panel-title">
 								 							<a data-toggle="collapse" href="#collapse1">
 								 								<i class="indicator fa fa-caret-right" aria-hidden="true"></i> Filters by Format
@@ -155,7 +154,7 @@
 															<li class="list-group-item">
 																<div class="checkbox">
 																	<label for="GML">
-																		<input class="checkme" type="checkbox" id="GML"value="9">
+																		<input class="checkme" type="checkbox" id="GML" value="9">
 																		GML
 																	</label>
 																</div>
@@ -190,11 +189,11 @@
 															</div>
                               <div class="row">
                                   <div class="col-md-6">
-                              <button type="button" id="btntoggle" class="btn btn-link btn-xs">Show More	</button>
+                              <button type="button" id="btntoggle" class="btn btn-link btn-xs more">Show More	</button>
                               </div></div>
 														</div>
 								 						</ul>
-								 					</div>
+
 								 					<div class="panel-heading" >
 								 						<h4 class="panel-title">
 								 							<a data-toggle="collapse" href="#collapse2">
@@ -479,14 +478,14 @@ $(this)
     $(".checkme").change(function(e) {
       if ($(this).is(":checked")) {
        $('#ResultFilterTop').append(
-        '<label   id='+ $(this).attr("id") +' class="btn btn-info close"  aria-label="Close">'+ $(this).attr("id") +'  '+'<span class="fa fa-times"></span> </label>' + "  "
+        '<label   id='+ $(this).attr("id") +' class="btn  btn-info btn-outline-orange close" style="font-size:16px; font-color:black; background-color: #fff;border: 1px solid #ccc;border-radius: 10px;"  aria-label="Close">'+ $(this).attr("id") +'  '+'<span class="fa fa-times"></span> </label>' + "  "
         );
          n=n+1
           $("#btntclearfilter").show();
           $(".pagination-sm").show();
           items={}
           items["id"]=$(this).attr("value");
-          items["title"]=$(this).attr("id");
+          items["filter"]=$(this).attr("id");
           JSonObj.push(items);
           console.log(JSonObj);
 
@@ -556,8 +555,9 @@ $(this)
         console.log("error = "+JSON.stringify(data));
       }
     })//end $.ajax
-
   }
+
+
 	function toggleChevron(e) {
 		$(e.target)
 				.prev('.panel-heading')
